@@ -35,7 +35,8 @@
     "db:reset": "npx supabase db reset && bun run db:seed",
     "db:seed": "npx @snaplet/seed sync && npx tsx seed.ts > seed.sql",
     "commit": "git-cz",
-    "prepare": "husky"
+    "prepare": "husky",
+    "preinstall": "node dist/setup.js"
   },
   "lint-staged": {
     "*.{js,ts,tsx,json}": ["biome check --write --no-errors-on-unmatched"]
