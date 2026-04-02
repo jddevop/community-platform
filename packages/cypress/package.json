@@ -2,7 +2,7 @@
   "name": "oa-cypress",
   "version": "1.0.0",
   "scripts": {
-    "start": "cross-env PORT=3456 tsx scripts/start.mts"
+    "start": "node init && cross-env PORT=3456 tsx scripts/start.mts"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",

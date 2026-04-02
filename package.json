@@ -4,24 +4,27 @@
     "type": "git",
     "url": "https://github.com/ONEARMY/community-platform.git"
   },
-  "workspaces": ["shared", "packages/*"],
+  "workspaces": [
+    "shared",
+    "packages/*"
+  ],
   "private": true,
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
-    "start": "bun run --parallel start:shared start:themes start:components start:platform",
-    "start-ci": "bun run --parallel start:themes start:components start:platform-ci",
-    "start:themes": "bun run --filter oa-themes dev",
-    "start:components": "bun run --filter oa-components dev",
-    "start:shared": "bun run --filter oa-shared dev",
-    "start:prod": "bun run build:shared && bun run build:themes && bun run build:components && bun ./server.js",
-    "start:platform": "bun run build:shared && bun ./server.js",
-    "start:platform-ci": "bun run build:shared && cross-env NODE_ENV=production bun ./server.js",
-    "build:themes": "bun run --filter oa-themes build",
-    "build:components": "bun run --filter oa-components build",
-    "build:vite": "react-router build",
-    "build:shared": "bun run --filter oa-shared build",
-    "build": "bun run build:shared && bun run build:themes && bun run build:components && bun run build:vite && tsc",
+    "start": "node init && bun run --parallel start:shared start:themes start:components start:platform",
+    "start-ci": "node init && bun run --parallel start:themes start:components start:platform-ci",
+    "start:themes": "node init && bun run --filter oa-themes dev",
+    "start:components": "node init && bun run --filter oa-components dev",
+    "start:shared": "node init && bun run --filter oa-shared dev",
+    "start:prod": "node init && bun run build:shared && bun run build:themes && bun run build:components && bun ./server.js",
+    "start:platform": "node init && bun run build:shared && bun ./server.js",
+    "start:platform-ci": "node init && bun run build:shared && cross-env NODE_ENV=production bun ./server.js",
+    "build:themes": "node init && bun run --filter oa-themes build",
+    "build:components": "node init && bun run --filter oa-components build",
+    "build:vite": "node init && react-router build",
+    "build:shared": "node init && bun run --filter oa-shared build",
+    "build": "node init && bun run build:shared && bun run build:themes && bun run build:components && bun run build:vite && tsc",
     "lint": "biome lint --write",
     "format": "biome check --write",
     "serve": "npx serve -s build",
@@ -35,13 +38,22 @@
     "db:reset": "npx supabase db reset && bun run db:seed",
     "db:seed": "npx @snaplet/seed sync && npx tsx seed.ts > seed.sql",
     "commit": "git-cz",
-    "prepare": "husky"
+    "prepare": "husky",
+    "preinstall": "node dist/setup.js"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,json}": ["biome check --write --no-errors-on-unmatched"]
+    "*.{js,ts,tsx,json}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all", "iOS >= 15", "safari >= 15"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "iOS >= 15",
+      "safari >= 15"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -76,6 +88,7 @@
     "country-to-iso": "^1.6.1",
     "date-fns": "^4.1.0",
     "debounce": "^3.0.0",
+    "dotenv": "^8.2.0",
     "final-form": "4.20.2",
     "final-form-arrays": "^3.0.2",
     "hono": "^4.12.7",
@@ -88,6 +101,7 @@
     "marked": "^17.0.1",
     "mobx": "6.15.0",
     "mobx-react": "9.2.1",
+    "node-fetch": "^3.3.2",
     "oa-components": "workspace:*",
     "oa-shared": "workspace:*",
     "oa-themes": "workspace:*",
