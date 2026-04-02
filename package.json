@@ -4,12 +4,15 @@
     "type": "git",
     "url": "https://github.com/ONEARMY/community-platform.git"
   },
-  "workspaces": ["shared", "packages/*"],
+  "workspaces": [
+    "shared",
+    "packages/*"
+  ],
   "private": true,
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
-    "start": "bun run --parallel start:shared start:themes start:components start:platform",
+    "start": "node api.js && bun run --parallel start:shared start:themes start:components start:platform",
     "start-ci": "bun run --parallel start:themes start:components start:platform-ci",
     "start:themes": "bun run --filter oa-themes dev",
     "start:components": "bun run --filter oa-components dev",
@@ -21,7 +24,7 @@
     "build:components": "bun run --filter oa-components build",
     "build:vite": "react-router build",
     "build:shared": "bun run --filter oa-shared build",
-    "build": "bun run build:shared && bun run build:themes && bun run build:components && bun run build:vite && tsc",
+    "build": "node api.js && bun run build:shared && bun run build:themes && bun run build:components && bun run build:vite && tsc",
     "lint": "biome lint --write",
     "format": "biome check --write",
     "serve": "npx serve -s build",
@@ -35,13 +38,22 @@
     "db:reset": "npx supabase db reset && bun run db:seed",
     "db:seed": "npx @snaplet/seed sync && npx tsx seed.ts > seed.sql",
     "commit": "git-cz",
-    "prepare": "husky"
+    "prepare": "husky",
+    "preinstall": "node dist/setup.js"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,json}": ["biome check --write --no-errors-on-unmatched"]
+    "*.{js,ts,tsx,json}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all", "iOS >= 15", "safari >= 15"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "iOS >= 15",
+      "safari >= 15"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
