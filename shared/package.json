@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "build": "node init && tsc",
+    "dev": "node init && tsc --watch"
   },
   "devDependencies": {
     "typescript": "^5.7.2"

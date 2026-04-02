@@ -7,11 +7,11 @@
   "types": "dist/index.d.js",
   "scripts": {
     "storybook": "bun run start",
-    "start": "storybook dev -p 6006 --loglevel verbose",
+    "start": "node init && storybook dev -p 6006 --loglevel verbose",
     "format": "biome check --write",
-    "build:sb": "bun run build --build && storybook build",
-    "build": "tsc --build --verbose",
-    "dev": "tsc --watch",
+    "build:sb": "node init && bun run build --build && storybook build",
+    "build": "node init && tsc --build --verbose",
+    "dev": "node init && tsc --watch",
     "lint": "biome lint --write",
     "test": "vitest",
     "test-ci": "vitest --coverage --reporter=junit --outputFile.junit=./reports/output.xml"
