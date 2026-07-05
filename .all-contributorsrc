@@ -1124,6 +1124,42 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "elbotho",
+      "name": "Botho",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1258870?v=4",
+      "profile": "https://botho.cc",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mo-salah1998",
+      "name": "Mohamed Salah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56582553?v=4",
+      "profile": "https://github.com/mo-salah1998",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "daphne951207-bit",
+      "name": "daphne951207-bit",
+      "avatar_url": "https://avatars.githubusercontent.com/u/261492264?v=4",
+      "profile": "https://github.com/daphne951207-bit",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "danielfayo",
+      "name": "danielfayo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98162647?v=4",
+      "profile": "https://github.com/danielfayo",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "projectName": "community-platform",

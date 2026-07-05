@@ -51,7 +51,10 @@ export const MapCardList = (props: IProps) => {
   const results = `${list.length} result${list.length == 1 ? '' : 's'} in view`;
 
   return (
-    <Flex data-cy={`CardList-${viewport}`} sx={{ flexDirection: 'column', gap: 2, padding: 2 }}>
+    <Flex
+      data-cy={`CardList-${viewport}`}
+      sx={{ flexDirection: 'column', gap: 2, padding: 2, containerType: 'inline-size' }}
+    >
       <Flex sx={{ justifyContent: 'space-between', paddingX: 2, paddingTop: 2, fontSize: 2 }}>
         <Text data-cy="list-results">{results}</Text>
         <Flex sx={{ alignItems: 'center', gap: 2 }}>
@@ -62,7 +65,15 @@ export const MapCardList = (props: IProps) => {
       {isListEmpty && EMPTY_LIST}
       {!isListEmpty && (
         <>
-          <Box sx={{ columnCount: [1, 2, 2, 3], columnGap: 0, '& > *': { breakInside: 'avoid' } }}>
+          <Box
+            sx={{
+              columnCount: 1,
+              columnGap: 4,
+              '@container (min-width: 520px)': { columnCount: 2 },
+              '@container (min-width: 1020px)': { columnCount: 3 },
+              '& > *': { breakInside: 'avoid' },
+            }}
+          >
             {displayItems}
           </Box>
           {hasMore && (

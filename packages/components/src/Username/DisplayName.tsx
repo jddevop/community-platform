@@ -21,30 +21,57 @@ export const DisplayName = ({ user, sx, target, isLink = true }: DisplayNameProp
   const DisplayNameBody = (
     <Flex
       data-cy="DisplayName"
-      sx={{ fontFamily: 'body', gap: 1, alignItems: 'center', minWidth: 0 }}
+      sx={{
+        fontFamily: 'title',
+        gap: 1,
+        alignItems: 'start',
+        minWidth: 0,
+        flexDirection: 'row',
+        paddingY: '3px',
+      }}
     >
-      <Text
-        sx={{
-          color: 'black',
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-          textOverflow: 'ellipsis',
-        }}
-        title={displayName || username}
-      >
-        {displayName || username}
-      </Text>
+      <Flex sx={{ flexDirection: 'column' }}>
+        <Flex>
+          <Text
+            sx={{
+              color: 'black',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+            }}
+            title={displayName || username || ''}
+          >
+            {displayName || username}
+          </Text>
 
-      {badges &&
-        badges.map((badge) => {
-          return <UserBadge key={badge.id} badge={badge} />;
-        })}
-
-      {countryCode && <FlagIcon countryCode={countryCode} />}
+          {badges && badges.length > 0 && (
+            <Flex sx={{ gap: 1, alignItems: 'center' }}>
+              {badges.map((badge) => {
+                return <UserBadge key={badge.id} badge={badge} />;
+              })}
+            </Flex>
+          )}
+        </Flex>
+        {countryCode && (
+          <Flex sx={{ alignItems: 'center', gap: 1, pt: 1 }}>
+            <FlagIcon countryCode={countryCode} />
+            <Text
+              sx={{
+                color: 'grey',
+                fontSize: 1,
+                fontFamily: 'body',
+                lineHeight: '100%',
+              }}
+            >
+              {country}
+            </Text>
+          </Flex>
+        )}
+      </Flex>
     </Flex>
   );
 
-  if (!isLink) {
+  if (!isLink || !username) {
     return DisplayNameBody;
   }
 
@@ -58,7 +85,6 @@ export const DisplayName = ({ user, sx, target, isLink = true }: DisplayNameProp
         minWidth: 0,
         overflow: 'hidden',
         paddingX: 1,
-        paddingY: '3px',
         borderRadius: 1,
         marginLeft: -1,
         color: 'black',
